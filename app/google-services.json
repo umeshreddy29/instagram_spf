@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "602483325815",
+    "project_id": "instagram-spf",
+    "storage_bucket": "instagram-spf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:602483325815:android:47bc3bfa8613b062ab7f72",
+        "android_client_info": {
+          "package_name": "com.example.instagramspf"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDP3Ak5m9HIdqG8-eqmCSnvLb5BZJQDhJg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
