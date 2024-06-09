@@ -1,4 +1,4 @@
-package com.example.instagramspoof
+package com.example.instagramspf
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView

@@ -7,6 +7,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.instagramspf.HomeActivity
 import com.example.instagramspf.Models.Post
 import com.example.instagramspf.Models.User
 import com.example.instagramspf.R
@@ -15,7 +16,6 @@ import com.example.instagramspf.utils.POST
 import com.example.instagramspf.utils.POST_FOLDER
 import com.example.instagramspf.utils.USER_NODE
 import com.example.instagramspf.utils.uploadImage
-import com.example.instagramspoof.HomeActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.toObject

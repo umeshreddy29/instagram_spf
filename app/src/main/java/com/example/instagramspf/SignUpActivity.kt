@@ -10,12 +10,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.instagramspf.Models.User
 import com.example.instagramspf.databinding.ActivitySignUpBinding
+import com.example.instagramspf.utils.USER_NODE
 import com.example.instagramspf.utils.USER_PROFILE_FOLDER
 import com.example.instagramspf.utils.uploadImage
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -47,26 +50,26 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(binding.root)
         user = User()
 
-//        if(intent.hasExtra("MODE")) {
-//            if(intent.getIntExtra("MODE",-1)==1)
-//            {
-//                binding.signUpBtn.text = "UPDATE PROFILE"
-//
-//                Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid).get()
-//                    .addOnSuccessListener {
-//
-//                        val user: User = it.toObject<User>()!!
-//                        if(!user.image.isNullOrEmpty())
-//                        {
-//                            Picasso.get().load(user.image).into(binding.profileImage)
-//                        }
-//                        binding.enterName.editText?.setText(user.name)
-//                        binding.enterEmail.editText?.setText(user.email)
-//                        binding.enterPassword.editText?.setText(user.password)
-//
-//                    }
-//            }
-//        }
+        if(intent.hasExtra("MODE")) {
+            if(intent.getIntExtra("MODE",-1)==1)
+            {
+                binding.signUpBtn.text = "UPDATE PROFILE"
+
+                Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid).get()
+                    .addOnSuccessListener {
+
+                        user = it.toObject<User>()!!
+                        if(!user.image.isNullOrEmpty())
+                        {
+                            Picasso.get().load(user.image).into(binding.profileImage)
+                        }
+                        binding.enterName.editText?.setText(user.name)
+                        binding.enterEmail.editText?.setText(user.email)
+                        binding.enterPassword.editText?.setText(user.password)
+
+                    }
+            }
+        }
 
         binding.loginHereText.setOnClickListener{
             startActivity(Intent(this@SignUpActivity,LoginActivity::class.java))
@@ -75,17 +78,17 @@ class SignUpActivity : AppCompatActivity() {
 
         binding.signUpBtn.setOnClickListener {
 
-//            if(intent.hasExtra("MODE")) {
-//                if (intent.getIntExtra("MODE", -1) == 1)
-//                {
-//                    Firebase.firestore.collection(USER_NODE)
-//                        .document(Firebase.auth.currentUser!!.uid).set(user)
-//                        .addOnSuccessListener {
-//                            startActivity(Intent(this@SignUpActivity,HomeActivity::class.java))
-//                            finish()
-//                        }
-//                }
-//            }
+            if(intent.hasExtra("MODE")) {
+                if (intent.getIntExtra("MODE", -1) == 1)
+                {
+                    Firebase.firestore.collection(USER_NODE)
+                        .document(Firebase.auth.currentUser!!.uid).set(user)
+                        .addOnSuccessListener {
+                            startActivity(Intent(this@SignUpActivity,HomeActivity::class.java))
+                            finish()
+                        }
+                }
+            }
 
             if (binding.enterName.editText?.text.toString().equals("") or
                 binding.enterEmail.editText?.text.toString().equals("") or
@@ -106,12 +109,12 @@ class SignUpActivity : AppCompatActivity() {
                             user.name = binding.enterName.editText?.text.toString()
                             user.email = binding.enterEmail.editText?.text.toString()
                             user.password = binding.enterPassword.editText?.text.toString()
-                            Firebase.firestore.collection("User")
+                            Firebase.firestore.collection(USER_NODE)
                                 .document(Firebase.auth.currentUser!!.uid).set(user)
                                 .addOnSuccessListener {
-                                    Toast.makeText(this@SignUpActivity, "Login", Toast.LENGTH_SHORT).show()
-//                                startActivity(Intent(this@SignUpActivity,HomeActivity::class.java))
-//                                finish()
+                                    Toast.makeText(this@SignUpActivity, "Signup successful", Toast.LENGTH_SHORT).show()
+                                    startActivity(Intent(this@SignUpActivity, HomeActivity::class.java))
+                                    finish()
                                 }
 
                         }
@@ -127,9 +130,6 @@ class SignUpActivity : AppCompatActivity() {
         binding.plus.setOnClickListener{
             launcher.launch("image/*")
         }
-
-
-
 
 
     }

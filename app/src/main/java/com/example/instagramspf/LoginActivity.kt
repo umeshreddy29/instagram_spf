@@ -9,7 +9,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.instagramspf.Models.User
 import com.example.instagramspf.databinding.ActivityLoginBinding
-import com.example.instagramspoof.HomeActivity
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 
@@ -42,6 +41,7 @@ class LoginActivity : AppCompatActivity() {
                     .addOnCompleteListener {
                         if(it.isSuccessful)
                         {
+                            Toast.makeText(this@LoginActivity,"Login Successful", Toast.LENGTH_SHORT).show()
                             startActivity(Intent(this@LoginActivity, HomeActivity::class.java))
                             finish()
                         }

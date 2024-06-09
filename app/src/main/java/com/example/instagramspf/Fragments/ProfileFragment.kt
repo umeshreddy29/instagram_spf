@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.instagramspf.Models.User
 import com.example.instagramspf.R
 import com.example.instagramspf.SignUpActivity
 import com.example.instagramspf.adapters.ViewPagerAdapter
@@ -13,7 +14,9 @@ import com.example.instagramspf.databinding.FragmentProfileBinding
 import com.example.instagramspf.utils.USER_NODE
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.firestore.toObject
 import com.google.firebase.ktx.Firebase
+import com.squareup.picasso.Picasso
 
 class ProfileFragment : Fragment() {
 
@@ -36,6 +39,7 @@ class ProfileFragment : Fragment() {
             activity?.startActivity(intent)
             activity?.finish()
         }
+
         viewPagerAdapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
         viewPagerAdapter.addFragments(MyPostFragment(), "My Post")
         viewPagerAdapter.addFragments(MyReelsFragment(), "My Reels")
@@ -49,15 +53,13 @@ class ProfileFragment : Fragment() {
         super.onStart()
         Firebase.firestore.collection(USER_NODE).document(Firebase.auth.currentUser!!.uid).get()
             .addOnSuccessListener {
-                binding.name.text = "name"
-                binding.bio.text = "email"
-//                val user: User = it.toObject<User>()!!
-//                binding.name.text = user.name
-//                binding.bio.text = user.email
-//                if(!user.image.isNullOrEmpty())
-//                {
-//                    Picasso.get().load(user.image).into(binding.profileImage)
-//                }
+                val user: User = it.toObject<User>()!!
+                binding.name.text = user.name
+                binding.bio.text = user.email
+                if(!user.image.isNullOrEmpty())
+                {
+                    Picasso.get().load(user.image).into(binding.profileImage)
+                }
 
             }
 
