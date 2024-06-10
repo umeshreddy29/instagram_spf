@@ -46,14 +46,18 @@ class PostAdapter (var context: Context, var postList: ArrayList<Post>) :
 
 
         Glide.with(context).load(postList.get(position).postUrl).placeholder(R.drawable.loading).into(holder.binding.postImage)
-        try{
-            val text = TimeAgo.using(postList.get(position).time.toLong())
+//        try{
+//            val text = TimeAgo.using(postList.get(position).time.toLong())
+//
+//            holder.binding.time.text = text
+//        }
+//        catch (e: Exception){
+//            holder.binding.time.text = ""
+//        }
 
-            holder.binding.time.text = text
-        }
-        catch (e: Exception){
-            holder.binding.time.text = ""
-        }
+        val text = TimeAgo.using(postList.get(position).time.toLong())
+
+        holder.binding.time.text = text
 
         holder.binding.share.setOnClickListener{
             var i = Intent(Intent.ACTION_SEND)
@@ -66,6 +70,10 @@ class PostAdapter (var context: Context, var postList: ArrayList<Post>) :
         holder.binding.caption.text = postList.get(position).caption
         holder.binding.like.setOnClickListener{
             holder.binding.like.setImageResource(R.drawable.like_red)
+        }
+
+        holder.binding.save.setOnClickListener{
+            holder.binding.save.setImageResource(R.drawable.save_black)
         }
 
     }
