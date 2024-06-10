@@ -46,6 +46,7 @@ class PostActivity : AppCompatActivity() {
         setSupportActionBar(binding.materialToolbar)
         getSupportActionBar()?.setDisplayHomeAsUpEnabled(true)
         getSupportActionBar()?.setDisplayShowHomeEnabled(true)
+
         binding.materialToolbar.setNavigationOnClickListener {
             finish()
         }
@@ -61,11 +62,11 @@ class PostActivity : AppCompatActivity() {
 
         binding.postButton.setOnClickListener {
 
-            Firebase.firestore.collection(USER_NODE).document().get()
-                .addOnSuccessListener {
+//            Firebase.firestore.collection(USER_NODE).document().get()
+//                .addOnSuccessListener {
 
-
-                    var user = it.toObject<User>()!!
+//
+//                    var user = it.toObject<User>()!!
                     val post: Post = Post(
                         postUrl = imageUrl!!,
                         caption = binding.caption.editText?.text.toString(),
@@ -81,10 +82,6 @@ class PostActivity : AppCompatActivity() {
                                 finish()
                             }
                     }
-
-                }
-
-
         }
     }
 }

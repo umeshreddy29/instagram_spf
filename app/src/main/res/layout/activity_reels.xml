@@ -86,7 +86,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:text="Your Vedio may appear in Posts and can be seen on the Posts tab of your Profile"
+        android:text="Your Vedio may appear in Reels and can be seen on the REELS tab of your Profile"
         app:layout_constraintEnd_toEndOf="@+id/post"
         app:layout_constraintStart_toStartOf="@+id/post"
         app:layout_constraintTop_toBottomOf="@+id/post" />
@@ -120,7 +120,7 @@
             android:layout_margin="10dp"
             android:layout_weight="1"
             android:backgroundTint="@color/blue"
-            android:text="Post" />
+            android:text="UPLOAD" />
     </LinearLayout>
 
 

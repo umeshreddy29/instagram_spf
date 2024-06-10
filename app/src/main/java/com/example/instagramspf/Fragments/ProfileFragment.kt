@@ -43,8 +43,8 @@ class ProfileFragment : Fragment() {
         viewPagerAdapter = ViewPagerAdapter(requireActivity().supportFragmentManager)
         viewPagerAdapter.addFragments(MyPostFragment(), "My Post")
         viewPagerAdapter.addFragments(MyReelsFragment(), "My Reels")
-//        binding.viewPager.adapter = viewPagerAdapter
-//        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        binding.viewPager.adapter = viewPagerAdapter
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
 
         return binding.root
     }
